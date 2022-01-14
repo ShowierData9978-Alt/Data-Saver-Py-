@@ -5,10 +5,10 @@ with open("README.md", "r") as fhandle:
 
 setuptools.setup(
     name="Showierdata9978", # Put your username here!
-    version="0.0.1", # The version of your package!
+    version="0.0.3", # The version of your package!
     author="Gavin", # Your name here!
     author_email="melfang36@outlook.com", # Your e-mail here!
-    description="A small example package", # A short description here!
+    description="This Project Saves Your Data Into A JsonFile", # A short description here!
     long_description=long_description,
     long_description_content_type="text/markdown",
     website = "https://github.com/ShowierData/Data-Saver-Py-",
@@ -20,4 +20,3 @@ setuptools.setup(
     ], # Enter meta data into the classifiers list!
     python_requires='>=3.6', # The version requirement for Python to run your package!
 )
-setuptools

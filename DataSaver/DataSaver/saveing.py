@@ -25,7 +25,8 @@ class DataSaver:
                                for NL in self.picode:
                                    print(NL)
                                    f.write(f"{NL}")
-                              import DataSaver.DataSaver.CodeGenerator.CustumWrite as CW
+                              from DataSaver.DataSaver.CodeGenerator.CustumWrite import write
+                              write()
                                   
                             
 
@@ -47,7 +48,7 @@ class DataSaver:
         for a in self.KeyStructure:
            key =  f'[{a}]{key}'
         g += 'import json\n'
-        g += 'def Write():'
+        g += 'def Write():\n'
        
 
         g += '\tdict1 = {}\n'
@@ -56,7 +57,7 @@ class DataSaver:
         
         g += f"\tf = open('{fp}','r+')\n"
         
-        g += '\tjson.dump(dict1,f)'
+        g += '\tjson.dump(dict1,f)\n'
         return g.__str__()
        
 
