@@ -11,7 +11,7 @@ setuptools.setup(
     description="A small example package", # A short description here!
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject", # Link your package website here! (most commonly a GitHub repo)
+    website = "https://github.com/ShowierData/Data-Saver-Py-",
     packages=setuptools.find_packages(), # A list of all packages for Python to distribute!
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -20,3 +20,4 @@ setuptools.setup(
     ], # Enter meta data into the classifiers list!
     python_requires='>=3.6', # The version requirement for Python to run your package!
 )
+setuptools

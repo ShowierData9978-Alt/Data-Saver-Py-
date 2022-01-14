@@ -1,6 +1,6 @@
 from .Exceptions import NotJsonFile, NotJsonFormat, FileDoesNotExist, NotEnoughtStructure
 import json
-from .codegen import CodeGenerator as gen
+from .CodeGenerator.codegen import CodeGenerator as gen
 from os.path import exists
 import pathlib
 
@@ -10,18 +10,23 @@ class DataSaver:
 
         self.KeyStructure = KeyStructure
 
-    def Add(self, io, Data: any):
+    def Add(self, io, Data:any):
         if pathlib.Path(io).suffix == ".json":
             if exists(pathlib.Path(io)):
                 with open(io, 'r+') as f:
 
                     if f.read(1).__str__() == '{':
                         if len(self.KeyStructure) <= 2:
-                            self.keys = []
-                            for a in range(len(self.KeyStructure)):
-                                self.keys.append(self.KeyStructure[a])
-                           
-
+                              #exec(self.GeneratePyCode(Data,io))
+                              self.picode = self.GeneratePyCode(Data,io)
+                              open("DataSaver/DataSaver/CodeGenerator/CustumWrite.py",'w').write("")
+                              with open("DataSaver/DataSaver/CodeGenerator/CustumWrite.py",'a') as f :
+                               
+                               for NL in self.picode:
+                                   print(NL)
+                                   f.write(f"{NL}")
+                              import DataSaver.DataSaver.CodeGenerator.CustumWrite as CW
+                                  
                             
 
                         else:
@@ -40,9 +45,18 @@ class DataSaver:
         g = gen()
         key = ""
         for a in self.KeyStructure:
-           key =  f'[{a}] {key}'
-        g += 'dict = {}'
-        g += f"f = open({fp},'r+')"
-        g += 'f.write()'
+           key =  f'[{a}]{key}'
+        g += 'import json\n'
+        g += 'def Write():'
+       
+
+        g += '\tdict1 = {}\n'
+        
+        g += f'\tdict1{key}.update({data})\n'
+        
+        g += f"\tf = open('{fp}','r+')\n"
+        
+        g += '\tjson.dump(dict1,f)'
+        return g.__str__()
        
 
